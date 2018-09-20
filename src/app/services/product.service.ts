@@ -1,3 +1,5 @@
+import { Product } from './../models/product';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +7,39 @@ import { Injectable } from '@angular/core';
 })
 export class ProductService {
 
-  constructor() { }
+  productList: AngularFireList<any>;
+  
+  selectedProduct: Product = new Product();
+
+
+  constructor( private db: AngularFireDatabase ) { }
+
+  getProduct() {
+    return this.productList = this.db.list('products');
+  }
+
+  insertProduct(product: Product) {
+    this.productList.push({
+      name: product.name,
+      category: product.category,
+      location: product.location,
+      price: product.price
+    });
+  }
+
+  updateProduct(product: Product) {
+    this.productList.update(
+      product.$key,
+      {
+        name: product.name,
+        category: product.category,
+        location: product.location,
+        price: product.price
+      }
+    )
+  }
+
+  deleteProduct($key: string) {
+    this.productList.remove($key);
+  }
 }
