@@ -31,9 +31,11 @@ export class ProductListComponent implements OnInit {
   }
 
   onDelete($key: string) {
-    console.log("Cancellazione prodotto con chiave " + $key);
-    this.productService.deleteProduct($key);
-    this.toastr.success('Successful operation', 'Product deleted');
+    if (confirm("Are you sure")) {
+      console.log("Cancellazione prodotto con chiave " + $key);
+      this.productService.deleteProduct($key);
+      this.toastr.success('Successful operation', 'Product deleted');
+  }
   }
 
 }
