@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ProductService } from '../../../services/product.service';
+import { NgForm } from '@angular/forms';
+import { Product } from '../../../models/product';
 
 @Component({
   selector: 'app-product',
@@ -13,6 +15,22 @@ export class ProductComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.getProducts();
+    this.onReset();
+  }
+
+  onSubmit(form: NgForm) {
+    console.log("Sottomissione del form al server");
+    this.productService.insertProduct(form.value);
+    this.onReset(form);
+  }
+  
+  onReset(form?: NgForm) {
+    console.log("Reset del form programmaticamente");    
+    if (form != null) {
+      form.reset();
+      this.productService.selectedProduct = new Product();
+    }
   }
 
 }

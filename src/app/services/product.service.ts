@@ -14,7 +14,7 @@ export class ProductService {
 
   constructor( private db: AngularFireDatabase ) { }
 
-  getProduct() {
+  getProducts() {
     return this.productList = this.db.list('products');
   }
 
