@@ -21,7 +21,15 @@ export class ProductComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log("Sottomissione del form al server");
-    this.productService.insertProduct(form.value);
+
+    if (form.value.$key == null) {
+      console.log("Inserimento");
+      this.productService.insertProduct(form.value);
+    }
+    else {
+      console.log("Cancellazione");
+      this.productService.updateProduct(form.value);
+    }
     this.onReset(form);
   }
   

@@ -24,4 +24,14 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  onEdit(product: Product) {
+    console.log("Aggiornamento prodotto " + product.name);
+    this.productService.selectedProduct = Object.assign({}, product);
+  }
+
+  onDelete($key: string) {
+    console.log("Cancellazione prodotto con chiave " + $key);
+    
+  }
+
 }
