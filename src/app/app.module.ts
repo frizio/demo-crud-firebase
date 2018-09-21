@@ -33,7 +33,7 @@ import { ProductService } from './services/product.service';
     AngularFireDatabaseModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule
+    ToastrModule.forRoot()
   ],
   providers: [
     ProductService
