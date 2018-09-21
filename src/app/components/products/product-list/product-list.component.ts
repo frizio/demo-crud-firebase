@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
 
   onDelete($key: string) {
     console.log("Cancellazione prodotto con chiave " + $key);
-    
+    this.productService.deleteProduct($key);
   }
 
 }
