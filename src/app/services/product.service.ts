@@ -8,11 +8,13 @@ import { Injectable } from '@angular/core';
 export class ProductService {
 
   productList: AngularFireList<any>;
-  
+
   selectedProduct: Product = new Product();
 
 
-  constructor( private db: AngularFireDatabase ) { }
+  constructor(
+    private db: AngularFireDatabase
+  ) { }
 
   getProducts() {
     return this.productList = this.db.list('products');
@@ -36,7 +38,7 @@ export class ProductService {
         location: product.location,
         price: product.price
       }
-    )
+    );
   }
 
   deleteProduct($key: string) {
